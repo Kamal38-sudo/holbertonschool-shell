@@ -1,4 +1,8 @@
 #!/usr/bin/env bash
-#salam
-awk '{count[$1" "$9]++} END {for (pair in count) print count[pair], pair}' apache-access.log | sort -nr
+# Groups visitors by IP and HTTP code from apache-access.log
 
+awk '{count[$1" "$9]++} 
+     END {
+         for (key in count)
+             print count[key], key
+     }' apache-access.log | sort -nr
