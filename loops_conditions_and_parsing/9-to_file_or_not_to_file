@@ -5,10 +5,10 @@ if [ -e school ]; then
     if [ -s school ]; then
         echo "school file is empty"
     else
-        echo " school file is empty"
+        echo " school exists but empty"
     fi
     if [ -f school ]; then
-        echo "school file is a regular file"
+        echo "File exist and is a regular file"
     else
         echo "school file is not a regular file"
     fi
