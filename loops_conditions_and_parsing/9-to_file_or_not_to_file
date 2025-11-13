@@ -1,14 +1,16 @@
 #!/usr/bin/env bash
-# This script checks the status of the file named "school"
+# This script checks if the file "school" exists and what type it is
 
 if [ -e school ]; then
+    echo "school file exists"
     if [ -f school ]; then
+        echo "school is a regular file"
         if [ -s school ]; then
-            echo "File exist and is a regular file"
+            echo "school file is not empty"
         else
             echo "school exists but empty"
         fi
-    else
+    elif [ -d school ]; then
         echo "school exists but it’s a directory"
     fi
 else
