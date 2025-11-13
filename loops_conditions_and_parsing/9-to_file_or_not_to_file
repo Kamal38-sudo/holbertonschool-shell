@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# This script checks if the file "school" exists and what type it is
+# This script checks the status of the file named "school"
 
 if [ -e school ]; then
     if [ -f school ]; then
@@ -8,7 +8,7 @@ if [ -e school ]; then
         else
             echo "school exists but empty"
         fi
-    elif [ -d school ]; then
+    else
         echo "school exists but it’s a directory"
     fi
 else
