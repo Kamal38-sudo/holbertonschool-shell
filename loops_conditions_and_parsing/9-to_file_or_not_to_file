@@ -1,20 +1,16 @@
 #!/usr/bin/env bash
-#salam
+# This script checks if the file "school" exists and what type it is
+
 if [ -e school ]; then
-    if [ -s school ]; then
-        if [ -f school ]; then
+    if [ -f school ]; then
+        if [ -s school ]; then
             echo "File exist and is a regular file"
         else
-            echo "school file is not a regular file"
+            echo "school exists but empty"
         fi
-
-    else
+    elif [ -d school ]; then
         echo "school exists but it’s a directory"
     fi
-
-
 else
-    echo "school file does not exist"
+    echo "school doesn’t exist"
 fi
-
-
