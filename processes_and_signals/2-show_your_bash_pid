@@ -1,2 +1,3 @@
 #!/usr/bin/env bash
+#salam
 ps auxf | grep "bash"
