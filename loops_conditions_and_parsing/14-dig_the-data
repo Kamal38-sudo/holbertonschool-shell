@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
 # Displays the number of occurrences of each IP and HTTP code in apache-acc
-awk '{count[$1" "$9]++} END {for (i in count) print count[i], i}' apache-access.log | sort -rn
+awk '$9 ~ /^[0-9]+$/ {count[$1" "$9]++} END {for (i in count) print count[i], i}' apache-access.log | sort -rn
 
