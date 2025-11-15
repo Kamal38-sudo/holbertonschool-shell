@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
-#salam
+# Sonsuz donguÃile /tmp/my_process faylina "I am alive!" yazir
+
 while true; do
     echo "I am alive!" >> /tmp/my_process
     sleep 2
 done
+
