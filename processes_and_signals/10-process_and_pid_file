@@ -1,10 +1,24 @@
 #!/usr/bin/env bash
-#salam
-echo $$ > /var/run/myscript.pid
-trap "echo 'I hate the kill command'" SIGTERM
-trap "echo 'Y U no love me?!'" SIGINT
-trap "rm -f /var/run/myscript.pid; exit" SIGQUIT SIGTERM
+# Skript PID faylı yaradır və SIGTERM/SIGQUIT siqnallarına cavab verir
+
+PID_FILE="/var/run/myscript.pid"
+
+# Skriptin PID-ni fayla yaz
+echo $$ > "$PID_FILE"
+
+# SIGTERM və SIGQUIT üçün handler
+term_handler() {
+    echo "I hate the kill command"
+    rm -f "$PID_FILE"
+    exit 0
+}
+
+# Trap siqnalları
+trap term_handler SIGTERM SIGQUIT
+
+# Sonsuz döngü ilə mesaj yaz
 while true; do
     echo "To infinity and beyond"
     sleep 2
 done
+
