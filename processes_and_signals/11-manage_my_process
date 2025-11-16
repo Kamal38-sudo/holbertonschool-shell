@@ -1,26 +1,32 @@
 #!/usr/bin/env bash
-# Init stilində skript, manage_my_process-i start/stop/restart edir
+# Init script to manage manage_my_process process: start, stop, restart
 
-PID_FILE="/var/run/my_process.pid"
-SCRIPT_PATH="/root/holbertonschool-shell/processes_and_signals/manage_my_process"  # manage_my_process skriptinin tam yolu
+PID_FILE="/tmp/my_process.pid"
+SCRIPT_PATH="$(pwd)/manage_my_process"
 
 start() {
-    "$SCRIPT_PATH" &               # Proses background-da ise dusur.
-    echo $! > "$PID_FILE"          # PID faylina yazilir.
+    "$SCRIPT_PATH" &
+    echo $! > "$PID_FILE"
     echo "manage_my_process started"
 }
 
 stop() {
     if [ -f "$PID_FILE" ]; then
         kill "$(cat "$PID_FILE")" 2>/dev/null
-        rm -f "$PID_FILE"
+      sudo  rm -f "$PID_FILE"
     fi
     echo "manage_my_process stopped"
 }
 
 restart() {
-    stop
-    start
+    if [ -f "$PID_FILE" ]; then
+        kill "$(cat "$PID_FILE")" 2>/dev/null
+        rm -f "$PID_FILE"
+    fi
+
+    "$SCRIPT_PATH" &
+    echo $! > "$PID_FILE"
+
     echo "manage_my_process restarted"
 }
 
@@ -36,8 +42,5 @@ case "$1" in
         ;;
     *)
         echo "Usage: manage_my_process {start|stop|restart}"
-        exit 1
         ;;
 esac
-
-
